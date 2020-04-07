@@ -7,10 +7,15 @@ mvn clean verify
 ````
 
 ### Docker instruction
-Create docker image and run by
+Build docker image
 ````
-docker-compose up --build
+docker-compose build
 ````
+Run Docker Images
+````
+docker-compose up
+````
+
 ### Open Chrome
 Open chrome or an browser with cors support for mac OS
 ````
