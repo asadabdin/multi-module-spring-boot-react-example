@@ -1,0 +1,53 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: scheduler-app-service
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:file:${user.home}/.h2/${spring.application.name}/schedulerdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: h2
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+      hibernate.format-sql: true
+    show-sql: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: ${spring.datasource.url}
+    schemas:
+      - PUBLIC
+  main:
+    allow-bean-definition-overriding: true
+
+org:
+  task:
+    schedule:
+      enabled: true
+      initial-delay: PT5S
+      fixed-delay: PT5S
+    page.default:
+      size: 50
+      page: 0
+      sort.orders:
+        - property: dueDate
+          direction: DESC
+        - property: priority
+          direction: DESC
+
+logging:
+  level:
+    org.scheduler: debug

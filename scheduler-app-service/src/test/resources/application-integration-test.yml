@@ -1,0 +1,6 @@
+org:
+  task:
+    schedule:
+      enabled: false
+      initial-delay: PT5S
+      fixed-delay: PT5S

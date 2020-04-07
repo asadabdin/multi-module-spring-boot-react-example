@@ -1,0 +1,17 @@
+version: '3'
+services:
+  scheduler-app-service:
+    image: scheduler-app-service
+    ports:
+      - "8081:8081"
+  scheduler-web:
+    image: scheduler-web:latest
+    build: ./scheduler-web
+    ports:
+      - "4200:4200"
+    depends_on:
+      - scheduler-app-service
+    links:
+      - scheduler-app-service
+    environment:
+      WAIT_HOSTS: scheduler-app-service:8081
